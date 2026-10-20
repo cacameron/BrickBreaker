@@ -11,8 +11,13 @@ import java.awt.event.ActionListener;
 public class GameOverPanel extends JPanel {
 
     JButton restartButton;
+    
+    private int finalScore;
+    
 
-    public GameOverPanel() {
+    public GameOverPanel(int score) {
+    	
+    	finalScore = score;
 
         setLayout(null);
 
@@ -45,35 +50,17 @@ public class GameOverPanel extends JPanel {
 
         // Game Over
         g.setColor(Color.WHITE);
-
-        g.setFont(
-                new Font(
-                        "Arial",
-                        Font.BOLD,
-                        50
-                )
-        );
-
-        g.drawString(
-                "GAME OVER",
-                270,
-                250
-        );
+        g.setFont(new Font("Arial",Font.BOLD,50));
+        g.drawString("GAME OVER",270,200);
+        
+     // Display final score
+        g.setFont(new Font("Arial", Font.BOLD, 30));
+        g.drawString("Final Score: " + finalScore, 300, 260);
 
         // Restart question
-        g.setFont(
-                new Font(
-                        "Arial",
-                        Font.PLAIN,
-                        25
-                )
-        );
+        g.setFont(new Font("Arial",Font.PLAIN,25));
 
-        g.drawString(
-                "Would you like to play again?",
-                235,
-                300
-        );
+        g.drawString("Would you like to play again?",235,300);
     }
 }
 

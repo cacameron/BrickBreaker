@@ -47,9 +47,9 @@ public class BrickerBreaker {
     }
 
     // Show Game Over screen
-    public static void showGameOver() {
+    public static void showGameOver(int score) {
 
-        GameOverPanel gameOver = new GameOverPanel();
+        GameOverPanel gameOver = new GameOverPanel(score);
 
         window.getContentPane().removeAll();
         window.add(gameOver);

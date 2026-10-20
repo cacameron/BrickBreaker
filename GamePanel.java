@@ -215,7 +215,7 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
         }
 
         // Show Game Over
-        BrickerBreaker.showGameOver();
+        BrickerBreaker.showGameOver(score);
     }
 
     @Override
@@ -245,6 +245,5 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
     @Override
     public void keyTyped(KeyEvent e) {
 
-        // Not used
     }
 }
