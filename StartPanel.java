@@ -1,3 +1,4 @@
+
 package BrickerBreaker;
 
 import javax.swing.JPanel;
@@ -11,6 +12,7 @@ import java.awt.event.ActionListener;
 public class StartPanel extends JPanel {
 
     JButton startButton;
+    JButton settingsButton;
 
     public StartPanel() {
 
@@ -18,9 +20,7 @@ public class StartPanel extends JPanel {
 
         // Start button
         startButton = new JButton("START");
-
         startButton.setBounds(325, 350, 150, 50);
-
         add(startButton);
 
         // Start game when button is clicked
@@ -32,6 +32,21 @@ public class StartPanel extends JPanel {
                 BrickerBreaker.startGame();
             }
         });
+
+        // Settings button
+        settingsButton = new JButton("SETTINGS");
+        settingsButton.setBounds(325, 420, 150, 50);
+        add(settingsButton);
+
+        // Open Settings screen when button is clicked
+        settingsButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                BrickerBreaker.showSettings();
+            }
+        });
     }
 
     @Override
@@ -40,39 +55,17 @@ public class StartPanel extends JPanel {
         super.paintComponent(g);
 
         // Background
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, 800, 600);
+        g.setColor(GameSettings.bgColor);
+        g.fillRect(0, 0, getWidth(), getHeight());
 
         // Title
         g.setColor(Color.WHITE);
+        g.setFont(new Font("Arial", Font.BOLD, 50));
 
-        g.setFont(
-                new Font(
-                        "Arial",
-                        Font.BOLD,
-                        50
-                )
-        );
-
-        g.drawString(
-                "BRICK BREAKER",
-                220,
-                250
-        );
+        g.drawString("BRICK BREAKER", 220, 250);
 
         // Instructions
-        g.setFont(
-                new Font(
-                        "Arial",
-                        Font.PLAIN,
-                        25
-                )
-        );
-
-        g.drawString(
-                "Use the arrow keys to move",
-                250,
-                300
-        );
+        g.setFont(new Font("Arial", Font.PLAIN, 25));
+        g.drawString("Use the arrow keys to move", 250, 300);
     }
 }

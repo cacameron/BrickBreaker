@@ -1,3 +1,4 @@
+
 package BrickerBreaker;
 
 import javax.swing.JFrame;
@@ -32,6 +33,18 @@ public class BrickerBreaker {
         window.repaint();
     }
 
+    // Show Settings screen
+    public static void showSettings() {
+
+        SettingsPanel settings = new SettingsPanel();
+
+        window.getContentPane().removeAll();
+        window.add(settings);
+
+        window.revalidate();
+        window.repaint();
+    }
+
     // Start a new game
     public static void startGame() {
 
@@ -48,6 +61,9 @@ public class BrickerBreaker {
 
     // Show Game Over screen
     public static void showGameOver(int score) {
+
+        // Update high score
+        GameSettings.updateHighScore(score);
 
         GameOverPanel gameOver = new GameOverPanel(score);
 
