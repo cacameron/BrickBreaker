@@ -1,4 +1,3 @@
-
 package BrickerBreaker;
 
 import java.awt.Color;
@@ -47,4 +46,19 @@ public class GameSettings {
             highScore = score;
         }
     }
+
+    // Choose a brick color that contrasts with the background
+    public static Color getBrickColor() {
+
+        if (bgColor.equals(Color.PINK)) {
+            return Color.BLACK;
+        } else if (bgColor.equals(Color.BLUE)) {
+            return Color.YELLOW;
+        } else if (bgColor.equals(Color.DARK_GRAY)) {
+            return Color.CYAN;
+        } else {
+            return Color.PINK;
+        }
+    }
 }
+

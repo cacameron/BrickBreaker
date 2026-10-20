@@ -102,9 +102,9 @@ public class GamePanel extends JPanel implements KeyListener, Runnable {
                     int brickX = col * 100;
                     int brickY = row * 30 + 50;
 
-                    // Brick color
-                    g.setColor(brickColor);
-
+                  
+                    // Brick color based on selected background
+                    g.setColor(GameSettings.getBrickColor());
                     g.fillRect(
                             brickX + 2,
                             brickY + 2,

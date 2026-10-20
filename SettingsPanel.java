@@ -1,4 +1,3 @@
-
 package BrickerBreaker;
 
 import javax.swing.*;
@@ -9,7 +8,7 @@ public class SettingsPanel extends JPanel {
     public SettingsPanel() {
 
         setLayout(null);
-        setBackground(Color.BLACK);
+        setBackground(GameSettings.bgColor);
 
         // Title
         JLabel title = new JLabel("SETTINGS", SwingConstants.CENTER);
@@ -35,48 +34,66 @@ public class SettingsPanel extends JPanel {
             )
         );
 
-        // Ball speed
+        // Ball Speed
         JLabel ballLabel = new JLabel("Ball Speed:");
         styleLabel(ballLabel, 150, 170, 150, 30);
 
         JSlider ballSlider =
-            new JSlider(1, 10, GameSettings.ballSpeed);
+                new JSlider(1, 10, GameSettings.ballSpeed);
 
-        ballSlider.setBounds(330, 165, 250, 45);
-        ballSlider.setBackground(Color.BLACK);
+        ballSlider.setBounds(330, 160, 300, 60);
+        ballSlider.setOpaque(true);
+        ballSlider.setBackground(GameSettings.bgColor);
         ballSlider.setForeground(Color.WHITE);
+        ballSlider.setMajorTickSpacing(1);
         ballSlider.setPaintTicks(true);
         ballSlider.setPaintLabels(true);
         add(ballSlider);
 
-        ballSlider.addChangeListener(e ->
-            GameSettings.ballSpeed = ballSlider.getValue()
-        );
+        ballSlider.addChangeListener(e -> {
+            GameSettings.ballSpeed = ballSlider.getValue();
+        });
 
-        // Paddle speed
+        // Paddle Speed
         JLabel paddleLabel = new JLabel("Paddle Speed:");
         styleLabel(paddleLabel, 150, 230, 170, 30);
 
         JSlider paddleSlider =
-            new JSlider(1, 10, GameSettings.paddleSpeed);
+                new JSlider(1, 10, GameSettings.paddleSpeed);
 
-        paddleSlider.setBounds(330, 225, 250, 45);
-        paddleSlider.setBackground(Color.BLACK);
+        paddleSlider.setBounds(330, 220, 300, 60);
+        paddleSlider.setOpaque(true);
+        paddleSlider.setBackground(GameSettings.bgColor);
         paddleSlider.setForeground(Color.WHITE);
+        paddleSlider.setMajorTickSpacing(1);
         paddleSlider.setPaintTicks(true);
         paddleSlider.setPaintLabels(true);
         add(paddleSlider);
 
-        paddleSlider.addChangeListener(e ->
-            GameSettings.paddleSpeed = paddleSlider.getValue()
-        );
+        paddleSlider.addChangeListener(e -> {
+            GameSettings.paddleSpeed = paddleSlider.getValue();
+        });
 
-        // Background color
+        // Background Color
         JLabel colorLabel = new JLabel("Background:");
         styleLabel(colorLabel, 150, 300, 170, 30);
 
-        String[] colors = {"Black", "Blue", "Dark Gray", "Green"};
+        String[] colors = {
+            "Black", "Blue", "Dark Gray", "Pink"
+        };
+
         JComboBox<String> colorBox = new JComboBox<>(colors);
+
+        // Select the current background color
+        if (GameSettings.bgColor.equals(Color.BLUE)) {
+            colorBox.setSelectedItem("Blue");
+        } else if (GameSettings.bgColor.equals(Color.DARK_GRAY)) {
+            colorBox.setSelectedItem("Dark Gray");
+        } else if (GameSettings.bgColor.equals(Color.PINK)) {
+            colorBox.setSelectedItem("Pink");
+        } else {
+            colorBox.setSelectedItem("Black");
+        }
 
         colorBox.setBounds(350, 300, 200, 30);
         add(colorBox);
@@ -93,16 +110,28 @@ public class SettingsPanel extends JPanel {
                     GameSettings.bgColor = Color.DARK_GRAY;
                     break;
 
-                case "Green":
-                    GameSettings.bgColor = Color.GREEN;
+                case "Pink":
+                    GameSettings.bgColor = Color.PINK;
                     break;
 
                 default:
                     GameSettings.bgColor = Color.BLACK;
+                    break;
             }
+
+            // Update the settings panel background
+            setBackground(GameSettings.bgColor);
+
+            // Update slider backgrounds
+            ballSlider.setBackground(GameSettings.bgColor);
+            paddleSlider.setBackground(GameSettings.bgColor);
+
+            // Keep labels readable
+            title.setForeground(Color.WHITE);
+            repaint();
         });
 
-        // High score
+        // High Score
         JLabel highScoreLabel = new JLabel(
             "High Score: " + GameSettings.highScore,
             SwingConstants.CENTER
@@ -115,7 +144,7 @@ public class SettingsPanel extends JPanel {
         highScoreLabel.setBounds(250, 360, 300, 35);
         add(highScoreLabel);
 
-        // Back button
+        // Back Button
         JButton backButton = new JButton("BACK");
         backButton.setBounds(325, 430, 150, 50);
         add(backButton);
@@ -125,7 +154,7 @@ public class SettingsPanel extends JPanel {
         );
     }
 
-    // Format labels
+    // Format Labels
     private void styleLabel(
             JLabel label, int x, int y, int width, int height) {
 

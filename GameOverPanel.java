@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class GameOverPanel extends JPanel {
 
     JButton restartButton;
+    JButton homeButton;
     
     private int finalScore;
     
@@ -23,9 +24,7 @@ public class GameOverPanel extends JPanel {
 
         // Restart button
         restartButton = new JButton("Restart");
-
         restartButton.setBounds(325, 350, 150, 50);
-
         add(restartButton);
 
         // Restart game when button is clicked
@@ -36,6 +35,19 @@ public class GameOverPanel extends JPanel {
 
                 BrickerBreaker.startGame();
             }
+        });
+        //Home Screen Button
+        homeButton = new JButton("Home");
+        homeButton.setBounds(325, 400, 150, 50);
+        add(homeButton);
+        
+        //return to main menu
+        homeButton.addActionListener(new ActionListener() {
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		BrickerBreaker.showStartScreen();
+        	}
         });
     }
 
